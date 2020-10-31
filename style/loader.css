@@ -1,0 +1,39 @@
+#preloader-container{
+    width: 100vw; 
+    height: 100vh; 
+    background: #000; 
+    z-index: 9999999999; 
+    position: fixed; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+  }
+
+  #preloader{
+    width: 50px; 
+    height: 50px; 
+    border: 5px solid; 
+    color: #3498db; 
+    border-radius: 50%; 
+    border-top-color: transparent; 
+    animation: loader 1.2s linear infinite;
+  }
+
+
+  @keyframes loader{
+    25%{
+      color: #2ecc71;
+      /*border-right-color: transparent;*/
+    }
+    50%{
+      color: #f1c40f;
+      /*border-bottom-color: transparent;*/
+    }
+    75%{
+      color: #e74c3c;
+      /*border-left-color: transparent;*/
+    }
+    to{
+      transform: rotate(360deg);
+    }
+  }

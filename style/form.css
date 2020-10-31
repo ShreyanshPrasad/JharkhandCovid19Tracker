@@ -1,0 +1,70 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body{
+	background-image: url('img/login.jpg');
+	background-repeat: no-repeat;
+	background-size: 100vw 100vh;
+	background-attachment: fixed;
+}
+.main-container{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: rgba(0,0,0,0.67);
+}
+.main-container h1{
+	text-align: center;
+	color: #ffffff;
+}
+.input-field{
+	position: relative;
+	margin-top: 30px;
+	width: 100%;
+}
+.input-field input,
+.input-field select{
+	width: 100%;
+	padding: 5px 5px;
+	box-sizing: border-box;
+	background: transparent;
+	border: none;
+	outline: none;
+	border-bottom: 3px solid #fff;
+	font-weight: 700;
+	color: #fff;
+}
+.input-field label{
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding: 5px 5px;
+	color: #fff;
+	transition: 0.5s;
+	font-weight: 900;
+	pointer-events: none;
+}
+.input-field input:focus + label,
+.input-field select:focus + label,
+.input-field input:valid + label,
+.input-field select:valid + label{
+	top: -25px;
+	background-color: red;
+	color: #fff;
+	padding: 2px 5px;
+	font-variant: small-caps;
+}
+.btn input[type="submit"],
+.btn input[type="reset"],
+.btn input[type="button"]{
+	border: 3px solid #fff;
+	background-color: red;
+}
+.btn input[type="submit"]:hover,
+.btn input[type="reset"]:hover,
+.btn input[type="button"]:hover{
+	cursor: pointer;
+}

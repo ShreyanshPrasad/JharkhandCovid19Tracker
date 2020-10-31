@@ -1,0 +1,22 @@
+#nav{
+    position: sticky;
+    position: -webkit-sticky;
+    position: ms-sticky;
+    top: 0;
+    left: 0;
+}
+#dividingHR{
+    border: 1px solid #ffffff;
+}
+.graph{
+    width: 100%;
+}
+#table{
+    display: block;
+    transition: all 0.5s;
+}
+#HideUnhide{
+    display: block;
+    float: right;
+    cursor: pointer;
+}
