@@ -132,7 +132,7 @@ $.ajax({
       });
 
       populateGraph('newConfirmedCases', 'bar', dateArr, caseArr, 'blue', 'New Case', 'Daily new reported cases');
-      $("#newCnf").prepend(" (" + caseArr[caseArr.length-1]);
+      //$("#newCnf").prepend(" (" + caseArr[caseArr.length-1]);
       if((caseArr[caseArr.length-1] > 0) && (dateArr[dateArr.length-1] == getFormatedDate() || dateArr[dateArr.length-1] == previousDay(getFormatedDate())))
         $("#newCnf").css({"display": "inline"});
       var date = [...dateArr];
@@ -164,7 +164,7 @@ $.ajax({
       });
 
       populateGraph('newRecovered', 'bar', dateArr, caseArr, 'green', 'New Recovery', 'Daily new recovered cases');
-      $("#newRec").prepend("(" + caseArr[caseArr.length-1]);
+      //$("#newRec").prepend("(" + caseArr[caseArr.length-1]);
       if((caseArr[caseArr.length-1] > 0) && (dateArr[dateArr.length-1] == getFormatedDate() || dateArr[dateArr.length-1] == previousDay(getFormatedDate())))
         $("#newRec").css({"display": "inline"});
       date = [...dateArr];
@@ -196,7 +196,7 @@ $.ajax({
       });
 
       populateGraph('newDeath', 'bar', dateArr, caseArr, 'red', 'New Death', 'Daily new Death');
-      $("#newDed").prepend("(" + caseArr[caseArr.length-1]);
+      //$("#newDed").prepend("(" + caseArr[caseArr.length-1]);
       if((caseArr[caseArr.length-1] > 0) && (dateArr[dateArr.length-1] == getFormatedDate() || dateArr[dateArr.length-1] == previousDay(getFormatedDate())))
         $("#newDed").css({"display": "inline"});
       date = [...dateArr];

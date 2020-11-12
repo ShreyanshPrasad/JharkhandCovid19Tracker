@@ -4,6 +4,9 @@ $(function(){
             return num.substring(0, num.indexOf('('));
         return num;
     }
+    function reverseString(str) {
+        return str.split("/").reverse().join("-");
+    }
     let lstUpdated = "";
     $.ajax({
         url : "https://api.covid19india.org/data.json",
@@ -28,13 +31,15 @@ $(function(){
           $('#totAct').text(jharkhand.active);
           $('#lastUpdateDate').text(jharkhand.lastupdatedtime);
           lstUpdated = jharkhand.lastupdatedtime;
-          let dt = new Date(lstUpdated);
-          //2020-11-11
-          const url = `https://api.covid19india.org/v4/data-${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getDate()}.json`;
-          //console.log(url);
+          lstUpdated = lstUpdated.substring(0, lstUpdated.indexOf(' '));
+          lstUpdated = reverseString(lstUpdated);
+          console.log(lstUpdated);
+          //YYYY-MM-DD
+          const url = `https://api.covid19india.org/v4/data-${lstUpdated}.json`;
+          console.log(url);
           let dataSet = [];
           $.ajax({
-            url : url,
+            url : 'https://api.covid19india.org/v4/data.json',
             type : "GET",
             success : function(data){
                 $.each(data, function(key, value){
@@ -48,14 +53,29 @@ $(function(){
                                 //details of new confirmed, deceased, recovered, tested
                                 $.each(value1, function(key2, value2){
                                     //console.log(key2, value2);
-                                    if(key2 == 'confirmed')
-                                        totCnf = value2;
-                                    if(key2 == 'deceased')
-                                        totDed = value2;
-                                    if(key2 == 'recovered')
-                                        totRec = value2;
-                                    if(key2 == 'tested')
-                                        $('#newTst').html(' (' + value2 + "<i class='fas fa-arrow-up text-light'></i>)");
+                                    if(key2 == 'confirmed'){
+                                        if(value2 > 0){
+                                            $('#newCnf').html(' ( ' + value2 + " <i class='fas fa-arrow-up text-primary'></i> )");
+                                            $('#totCnfNew').html(' ( ' + value2 + " <i class='fas fa-arrow-up text-primary'></i> )");
+                                        }
+                                    }
+                                    if(key2 == 'deceased'){
+                                        if(value2 > 0){
+                                            $('#newDed').html(' ( ' + value2 + " <i class='fas fa-arrow-up text-danger'></i> )");
+                                            $('#totDedNew').html(' ( ' + value2 + " <i class='fas fa-arrow-up text-danger'></i> )");
+                                        }
+                                    }
+                                    if(key2 == 'recovered'){
+                                        if(value2 > 0){
+                                            $('#newRec').html(' ( ' + value2 + " <i class='fas fa-arrow-up text-success'></i> )");
+                                            $('#totRecNew').html(' ( ' + value2 + " <i class='fas fa-arrow-up text-success'></i> )");
+                                        }
+                                    }
+                                    if(key2 == 'tested'){
+                                        if(value2 > 0){
+                                            $('#newTst').html(' (' + value2 + " <i class='fas fa-arrow-up text-muted'></i> )");
+                                        }
+                                    }
                                 });
                             }
                             if(key1 == "districts"){
@@ -89,15 +109,15 @@ $(function(){
                                                 var cnfNew = 0, recNew = 0, dedNew = 0;
                                                 if(key4 == 'confirmed'){
                                                     cnfNew = rec[3];
-                                                    rec[3] = cnfNew > 0 ? `${value4} ( <i class='fas fa-arrow-up text-primary'></i> ${cnfNew})` : value4;
+                                                    rec[3] = cnfNew > 0 ? `${value4} ( <i class='fas fa-arrow-up text-primary'></i> ${cnfNew} )` : value4;
                                                 }
                                                 if(key4 == 'deceased'){
                                                     dedNew = rec[5];
-                                                    rec[5] = dedNew > 0 ? `${value4} ( <i class='fas fa-arrow-up text-danger'></i> ${dedNew})` : value4;
+                                                    rec[5] = dedNew > 0 ? `${value4} ( <i class='fas fa-arrow-up text-danger'></i> ${dedNew} )` : value4;
                                                 }
                                                 if(key4 == 'recovered'){
                                                     recNew = rec[4];
-                                                    rec[4] = recNew > 0 ? `${value4} ( <i class='fas fa-arrow-up text-success'></i> ${recNew})` : value4;
+                                                    rec[4] = recNew > 0 ? `${value4} ( <i class='fas fa-arrow-up text-success'></i> ${recNew} )` : value4;
                                                 }
                                             });
                                         }
