@@ -52,6 +52,8 @@ function populateGraph(graphID, type, dateArr, caseArr, color, labelText, option
                     //lineTension : 0,
                     backgroundColor: color,
                     borderColor: color,
+                    pointRadius: 1,
+                    pointHoverRadius: 3,
                     data: caseArr
                 }]
             },
