@@ -127,7 +127,8 @@ $(function(){
                                     let ded = removeParenthesis(rec[5].toString());
                                     rec[2] = cnf - cur - ded;
                                     //console.log(rec);
-                                    dataSet.push(rec);
+                                    if(rec[1] > 0) //If Population is > 0, No incorrectData
+                                        dataSet.push(rec);
                                     //console.log(key2, value2);
                                 });
                                 $('#example')
