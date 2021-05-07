@@ -82,6 +82,12 @@ $(function(){
                                 //details of all districst of Jharkhand
                                 
                                 $.each(value1, function(key2, value2){
+
+                                    /**
+                                     * Record format :
+                                     * District, Confirmed, Recovered, Dead, Active, Population
+                                     */
+
                                     let rec = ['District', '0', '0', '0', '0', '0'];
                                     rec[0] = key2;
                                     $.each(value2, function(key3, value3){
@@ -90,46 +96,45 @@ $(function(){
                                             $.each(value3, function(key4, value4){
                                                 //console.log(key4, value4);
                                                 if(key4 == 'confirmed')
-                                                    rec[3] = value4;
+                                                    rec[1] = value4;
                                                 if(key4 == 'deceased')
-                                                    rec[5] = value4;
+                                                    rec[3] = value4;
                                                 if(key4 == 'recovered')
-                                                    rec[4] = "" + value4;
+                                                    rec[2] = "" + value4;
                                             });
                                             
                                         }
 
-                                        //console.log("cnfNew", cnfNew, "dedNew", dedNew, "recNew", recNew);
                                         if(key3 == "meta"){
-                                            rec[1] = "" + value3.population;
+                                            rec[5] = "" + value3.population;
                                         }
                                         if(key3 == "total"){
                                             $.each(value3, function(key4, value4){
-                                                //console.log(key4, value4);
+                                                
                                                 var cnfNew = 0, recNew = 0, dedNew = 0;
                                                 if(key4 == 'confirmed'){
-                                                    cnfNew = rec[3];
-                                                    rec[3] = cnfNew > 0 ? `${value4} ( <i class='fas fa-arrow-up text-primary'></i> ${cnfNew} )` : value4;
+                                                    cnfNew = rec[1];
+                                                    rec[1] = cnfNew > 0 ? `${value4} ( <i class='fas fa-arrow-up text-primary'></i> ${cnfNew} )` : value4;
                                                 }
                                                 if(key4 == 'deceased'){
-                                                    dedNew = rec[5];
-                                                    rec[5] = dedNew > 0 ? `${value4} ( <i class='fas fa-arrow-up text-danger'></i> ${dedNew} )` : value4;
+                                                    dedNew = rec[3];
+                                                    rec[3] = dedNew > 0 ? `${value4} ( <i class='fas fa-arrow-up text-danger'></i> ${dedNew} )` : value4;
                                                 }
                                                 if(key4 == 'recovered'){
-                                                    recNew = rec[4];
-                                                    rec[4] = recNew > 0 ? `${value4} ( <i class='fas fa-arrow-up text-success'></i> ${recNew} )` : value4;
+                                                    recNew = rec[2];
+                                                    rec[2] = recNew > 0 ? `${value4} ( <i class='fas fa-arrow-up text-success'></i> ${recNew} )` : value4;
                                                 }
                                             });
                                         }
                                     });
-                                    let cnf = removeParenthesis(rec[3].toString());
-                                    let cur = removeParenthesis(rec[4].toString());
-                                    let ded = removeParenthesis(rec[5].toString());
-                                    rec[2] = cnf - cur - ded;
-                                    //console.log(rec);
-                                    if(rec[1] > 0) //If Population is > 0, No incorrectData
+                                    let cnf = removeParenthesis(rec[1].toString());
+                                    let cur = removeParenthesis(rec[2].toString());
+                                    let ded = removeParenthesis(rec[3].toString());
+                                    rec[4] = cnf - cur - ded;
+                                    
+                                    if(rec[5] > 0) //If Population is > 0, No incorrectData
                                         dataSet.push(rec);
-                                    //console.log(key2, value2);
+
                                 });
                                 $('#example')
                                     .addClass( 'nowrap' )
@@ -143,7 +148,7 @@ $(function(){
                             if(key1 == "meta"){
                                 //Last updated and total population of Jharkhand
                                 $.each(value1, function(key2, value2){
-                                    //console.log(key2, value2);
+                                    
                                     if(key2 == 'population'){
                                         $('#totalPop').text(value2);
                                     }
